@@ -1,6 +1,8 @@
 <template>
   <div class="ml-[420px] w-full">
     <div class="w-full">
+      <div id="BG"></div>
+
       <div class="border-l border-green-500 w-full">
         <div class="bg-[#f0f0f0] fixed z-10 min-w-[calc(100vw-420px)] flex justify-between items-center px-2 py-2">
           <div class="flex items-center">
@@ -54,4 +56,16 @@
   import EmoticonExcitedOutlineIcon from 'vue-material-design-icons/EmoticonExcitedOutline.vue';
   import PaperclipIcon from 'vue-material-design-icons/Paperclip.vue';
   import SendIcon from 'vue-material-design-icons/Send.vue';
+  import messageBg from '/message-bg.jpg';
+
 </script>
+
+<style >
+  #BG {
+    background: url('/message-bg.png') no-repeat center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
+  }
+</style>

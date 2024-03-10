@@ -5,7 +5,7 @@
 
     <div class="max-w-xl mx-auto">
       <div class="mt-10 flex items-center w-full">
-        <img width="40" src="https://random.imagecdn.app/100/100" alt="image" />
+        <img :width="40" src="/whatsapp-logo.png" alt="image" />
         <div class="font-semibold text-gray-100 ml-6">WHATSAPP APP</div>
       </div>
 
@@ -14,12 +14,26 @@
           Whatsapp Clone
         </div>
         <div class="w-full flex justify-center bg-[#191919] p-3 rounded-md">
-
+          <GoogleLogin :callback="callback" />
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
+  import { GoogleLogin } from "vue3-google-login";
+  import { useUserStore } from "@/store/user.store";
+  import { useRouter } from "vue-router";
+
+  const router = useRouter();
+  const userStore = useUserStore();
+
+  const callback = async (response) => {
+    await userStore.getUserInfoFromGoogle(response);
+
+    setTimeout(() => {
+      router.push("/");
+    }, 200);
+  }
 </script>

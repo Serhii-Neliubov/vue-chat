@@ -3,10 +3,10 @@
     <div id="Header" class="fixed w-[420px] z-10">
 
       <div class="bg-[#f0f0f0] w-full flex justify-between items-center px-3 py-2">
-        <img class="rounded-full ml-1 w-10" src="https://random.imagecdn.app/100/100" alt="image" />
+        <img class="rounded-full ml-1 w-10" :src="userStore.picture || ''" alt="image" />
         <div class="flex items-center justify-center">
           <AccountGroupIcon fill-color="#515151" class="mr-6" />
-          <DotsVerticalIcon fill-color="#515151" class="cursor-pointer" />
+          <DotsVerticalIcon @click="logout" fill-color="#515151" class="cursor-pointer" />
         </div>
       </div>
 
@@ -23,7 +23,13 @@
       </div>
     </div>
 
-    <Chats class="mt-[100px]"/>
+    <div v-if="showFindFriends">
+      <Chats class="mt-[100px]"/>
+    </div>
+
+    <div v-else>
+      <FindFriends class="pt-28"/>
+    </div>
 
     <div v-if="open">
       <Message />
@@ -34,7 +40,7 @@
         <div class="grid h-screen place-items-center">
           <div>
             <div class="w-full flex items-center justify-center">
-              <img width="375" src="https://random.imagecdn.app/400/200" alt="image" />
+              <img width="375" src="/w-web-not-loaded-chat.png" alt="image" />
             </div>
 
             <div class="text-[32px] text-gray-500 font-light mt-10">WhatsApp</div>
@@ -50,6 +56,9 @@
 </template>
 
 <script setup lang="ts">
+  import { useUserStore } from "@/store/user.store";
+  const userStore = useUserStore();
+
   import AccountGroupIcon from 'vue-material-design-icons/AccountGroup.vue';
   import DotsVerticalIcon from 'vue-material-design-icons/DotsVertical.vue';
   import MagnifyIcon from 'vue-material-design-icons/Magnify.vue';
@@ -57,6 +66,13 @@
   import Chats from './Chats.vue';
   import Message from './Message.vue';
   import {ref} from "vue";
+  import FindFriends from "@/views/FindFriends.vue";
 
   let open = ref(true);
+  let showFindFriends = ref(false);
+
+  const logout = () => {
+    let res = confirm("Are you sure you want to logout?");
+    if (res) userStore.logout();
+  }
 </script>
