@@ -4,6 +4,6 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
   import MessageRow from '@/components/MessageRow.vue';
 </script>

@@ -40,7 +40,7 @@
         <div class="grid h-screen place-items-center">
           <div>
             <div class="w-full flex items-center justify-center">
-              <img width="375" src="/w-web-not-loaded-chat.png" alt="image" />
+              <img :width="375" src="/w-web-not-loaded-chat.png" alt="image" />
             </div>
 
             <div class="text-[32px] text-gray-500 font-light mt-10">WhatsApp</div>
@@ -58,21 +58,22 @@
 <script setup lang="ts">
   import { useUserStore } from "@/store/user.store";
   const userStore = useUserStore();
+  import { ref } from "vue";
 
   import AccountGroupIcon from 'vue-material-design-icons/AccountGroup.vue';
   import DotsVerticalIcon from 'vue-material-design-icons/DotsVertical.vue';
   import MagnifyIcon from 'vue-material-design-icons/Magnify.vue';
 
-  import Chats from './Chats.vue';
+  import Chats from '@/views/Chats.vue';
   import Message from './Message.vue';
-  import {ref} from "vue";
   import FindFriends from "@/views/FindFriends.vue";
+  import router from '@/router'
 
   let open = ref(true);
   let showFindFriends = ref(false);
 
   const logout = () => {
     let res = confirm("Are you sure you want to logout?");
-    if (res) userStore.logout();
+    if (res) userStore.logout(); router.push("/login");
   }
 </script>

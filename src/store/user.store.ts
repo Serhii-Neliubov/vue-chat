@@ -4,7 +4,6 @@ import axios from "axios";
 axios.defaults.baseURL = 'http://localhost:4001/';
 
 export const useUserStore = defineStore('user', {
-  // could also be defined as
   state: () => ({
     sub: '',
     email: '',
@@ -12,9 +11,10 @@ export const useUserStore = defineStore('user', {
     firstName: '',
     lastName: '',
   }),
+
   actions: {
-    async getUserInfoFromGoogle(data) {
-      try{
+    async getUserInfoFromGoogle(data: any) {
+      try {
         let res = await axios.post('api/google-login', {
           token: data.credential
         })
@@ -22,8 +22,8 @@ export const useUserStore = defineStore('user', {
         this.sub = res.data.sub;
         this.email = res.data.email;
         this.picture = res.data.picture;
-        this.firstName = res.data.firstName;
-        this.lastName = res.data.lastName;
+        this.firstName = res.data.given_name;
+        this.lastName = res.data.family_name;
       } catch (e) {
         console.log(e);
       }
@@ -37,4 +37,6 @@ export const useUserStore = defineStore('user', {
       this.lastName = '';
     }
   },
+
+  persist: true,
 })

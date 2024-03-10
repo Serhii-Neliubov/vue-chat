@@ -21,15 +21,16 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
   import { GoogleLogin } from "vue3-google-login";
   import { useUserStore } from "@/store/user.store";
   import { useRouter } from "vue-router";
+  import type { AxiosResponse } from 'axios'
 
   const router = useRouter();
   const userStore = useUserStore();
 
-  const callback = async (response) => {
+  const callback = async (response: AxiosResponse) => {
     await userStore.getUserInfoFromGoogle(response);
 
     setTimeout(() => {

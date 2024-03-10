@@ -20,8 +20,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-  import MessageRow from '@/components/MessageRow.vue';
-  import CheckAllIcon from "vue-material-design-icons/CheckAll.vue";
-</script>

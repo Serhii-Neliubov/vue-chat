@@ -10,5 +10,6 @@
     "paths": {
       "@/*": ["./src/*"]
     }
-  }
+  },
+  "allowJs": true
 }
