@@ -35,10 +35,10 @@
           <PaperclipIcon :size="27" fill-color="#515151" class="mx-1.5 mr-3" />
 
           <input
-              type="text"
-              class="mr-1 rounded-lg shadow appearance-none w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              autocomplete="off"
-              placeholder="Message..."
+            type="text"
+            class="mr-1 rounded-lg shadow appearance-none w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            autocomplete="off"
+            placeholder="Message..."
           />
 
           <button class="ml-3 p-2 w-12 flex items-center justify-center">
@@ -52,20 +52,19 @@
 </template>
 
 <script setup lang="ts">
-  import DotsVerticalIcon from 'vue-material-design-icons/DotsVertical.vue';
-  import EmoticonExcitedOutlineIcon from 'vue-material-design-icons/EmoticonExcitedOutline.vue';
-  import PaperclipIcon from 'vue-material-design-icons/Paperclip.vue';
-  import SendIcon from 'vue-material-design-icons/Send.vue';
-  import messageBg from '/message-bg.jpg';
+import DotsVerticalIcon from 'vue-material-design-icons/DotsVertical.vue';
+import EmoticonExcitedOutlineIcon from 'vue-material-design-icons/EmoticonExcitedOutline.vue';
+import PaperclipIcon from 'vue-material-design-icons/Paperclip.vue';
+import SendIcon from 'vue-material-design-icons/Send.vue';
 
 </script>
 
 <style >
-  #BG {
-    background: url('/message-bg.png') no-repeat center;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: -1;
-  }
+#BG {
+  background: url('/message-bg.png') no-repeat center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -1;
+}
 </style>
