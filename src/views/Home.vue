@@ -23,6 +23,7 @@
         <div class="px-1 m-2 bg-[#f0f0f0] flex items-center justify-center rounded-md">
           <MagnifyIcon fill-color="#515151" :size="18" class="ml-2" />
           <input
+              @click="showFindFriends = !showFindFriends"
               type="text"
               class="appearance-none w-full bg-[#f0f0f0] py-1.5 px-2.5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder:text-sm placeholder:text-gray-500"
               autocomplete="off"
@@ -40,7 +41,7 @@
       <FindFriends class="pt-28"/>
     </div>
 
-    <div v-if="open">
+    <div v-if="userDataForChat.length">
       <Message />
     </div>
 
@@ -67,7 +68,7 @@
 <script setup lang="ts">
   import { useUserStore } from "@/store/user.store";
   const userStore = useUserStore();
-  import { ref } from "vue";
+  import { onMounted, ref } from 'vue'
 
   import AccountGroupIcon from 'vue-material-design-icons/AccountGroup.vue';
   import MagnifyIcon from 'vue-material-design-icons/Magnify.vue';
@@ -77,10 +78,20 @@
   import Message from './Message.vue';
   import FindFriends from "@/views/FindFriends.vue";
   import router from '@/router'
+  import { storeToRefs } from 'pinia'
 
-  let open = ref(true);
-  let showFindFriends = ref(false);
+  const { showFindFriends, userDataForChat } = storeToRefs(userStore);
+
   let isModalOpen = ref(false);
+
+  onMounted(() => {
+    try{
+      userStore.getAllUsers();
+      userStore.getAllChatsByUser();
+    } catch (error) {
+      console.error(error);
+    }
+  });
 
   const logout = () => {
     isModalOpen.value = true;
